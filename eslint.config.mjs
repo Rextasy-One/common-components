@@ -1,3 +1,3 @@
-import { reactConfig } from '../../eslint.config.mjs';
+import { reactConfig } from '@aws-rex/config/eslint';
 
 export default reactConfig();
