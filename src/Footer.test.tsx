@@ -1,12 +1,13 @@
 import { render, screen } from '@testing-library/react';
+import { BRAND } from './brand';
 import { Footer } from './Footer';
 
 describe('<Footer />', () => {
-  it('renders the contentinfo landmark with the default owner and current year', () => {
+  it('renders the contentinfo landmark with the shared brand and current year', () => {
     render(<Footer />);
 
     expect(screen.getByRole('contentinfo')).toHaveTextContent(
-      `© ${new Date().getFullYear()} Rextasy One`,
+      `© ${new Date().getFullYear()} ${BRAND}`,
     );
   });
 

@@ -1,26 +1,35 @@
 # @aws-rex/common-components
 
-Shared header, footer, and navigation primitives for Aws Rex frontends.
+Shared header, footer, and navigation primitives for Rex Staples sites, plus the canonical `BRAND`.
 
 - **Consumers:** `@aws-rex/dashboard`, `@aws-rex/marketing-site`
 - **Repo:** `Rextasy-One/common-components`
 - **Type:** presentational, dependency-free React 19 components (peer deps only)
+
+## Brand
+
+`BRAND` is the single source of truth for the site name. Change it here and every consumer updates:
+
+```tsx
+import { BRAND } from '@aws-rex/common-components'; // 'Rex Staples'
+```
+
+`Header` and `Footer` default to `BRAND` when no `brand`/`owner` prop is passed.
 
 ## Install
 
 Inside the workspace it is a normal dependency:
 
 ```jsonc
-// src/<repo>/package.json
+// source/<repo>/package.json
 {
   "dependencies": {
-    "@aws-rex/common-components": "workspace:*",
+    "@aws-rex/common-components": "^1.0.0",
   },
 }
 ```
 
-The package is consumed **from source** — there is no build step. A Next.js consumer enables it
-with:
+The package is consumed **from source** — there is no build step. A Next.js consumer enables it with:
 
 ```ts
 // next.config.ts
@@ -44,9 +53,9 @@ import { Header, Footer } from '@aws-rex/common-components';
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <Header brand="Aws Rex" />
+      <Header />
       <main>{children}</main>
-      <Footer owner="Aws Rex" />
+      <Footer />
     </>
   );
 }
@@ -59,19 +68,22 @@ Subpath imports are available: `@aws-rex/common-components/header` and
 
 ### `<Header />`
 
-| Prop      | Type                 | Default         | Description                         |
-| --------- | -------------------- | --------------- | ----------------------------------- |
-| `brand`   | `string`             | `'Aws Rex'`     | Brand name on the left.             |
-| `items`   | `readonly NavItem[]` | Home, Dashboard | Primary navigation entries.         |
-| `actions` | `ReactNode`          | —               | Right-hand slot (auth, theme, ...). |
+| Prop      | Type                 | Default                   | Description                         |
+| --------- | -------------------- | ------------------------- | ----------------------------------- |
+| `brand`   | `string`             | `BRAND` (`'Rex Staples'`) | Brand name on the left.             |
+| `items`   | `readonly NavItem[]` | Home, Dashboard, Resume   | Primary navigation entries.         |
+| `actions` | `ReactNode`          | —                         | Right-hand slot (auth, theme, ...). |
 
-`NavItem` is `{ label: string; href: string }`.
+`NavItem` is `{ label: string; href: string; external?: boolean }`. `external` renders the link with
+`target="_blank"` and `rel="noreferrer noopener"`.
+
+To suppress a route in a consumer that does not serve it, pass an explicit `items` array.
 
 ### `<Footer />`
 
 | Prop    | Type     | Default      | Description      |
 | ------- | -------- | ------------ | ---------------- |
-| `owner` | `string` | `'Aws Rex'`  | Copyright owner. |
+| `owner` | `string` | `BRAND`      | Copyright owner. |
 | `year`  | `number` | current year | Copyright year.  |
 
 ## Scripts
@@ -90,12 +102,8 @@ responsible for generating the classes (see `@source` above).
 
 ## Tooling
 
-ESLint, Prettier, and TypeScript config come from [`@aws-rex/config`](https://github.com/Rextasy-One/config),
-a versioned dependency (`^1.0.0`) — this repo has no config that reaches outside itself:
-
-```jsonc
-{ "prettier": "@aws-rex/config/prettier", "devDependencies": { "@aws-rex/config": "^1.0.0" } }
-```
+ESLint, Prettier, and TypeScript config come from
+[`@aws-rex/config`](https://github.com/Rextasy-One/config) as a versioned dependency (`^1.0.0`).
 
 ## Roadmap
 
