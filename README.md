@@ -88,6 +88,15 @@ pnpm format
 Components carry Tailwind utility classes but ship no CSS. The consumer's Tailwind build is
 responsible for generating the classes (see `@source` above).
 
+## Tooling
+
+ESLint, Prettier, and TypeScript config come from [`@aws-rex/config`](https://github.com/Rextasy-One/config),
+a versioned dependency (`^1.0.0`) — this repo has no config that reaches outside itself:
+
+```jsonc
+{ "prettier": "@aws-rex/config/prettier", "devDependencies": { "@aws-rex/config": "^1.0.0" } }
+```
+
 ## Roadmap
 
 A standalone preview harness (so the library can be reviewed on GitHub on its own) is tracked in the
