@@ -5,8 +5,9 @@
 export const BRAND = 'Rex Staples';
 
 /**
- * Canonical set of internal site routes. `Resume` is used by consumers to
- * suppress the link until a resume page exists.
+ * Canonical site destinations. All relative: the marketing site proxies
+ * `/dashboard` to the dashboard app (see its `next.config.ts`), so no consumer
+ * needs to know which port or origin the dashboard runs on.
  */
 export const ROUTES = {
   home: '/',
