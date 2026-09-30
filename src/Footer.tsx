@@ -6,7 +6,7 @@ export interface FooterProps {
 }
 
 /** Global site footer. Presentational and dependency-free. */
-export function Footer({ owner = 'Aws Rex', year = new Date().getFullYear() }: FooterProps) {
+export function Footer({ owner = 'Rextasy One', year = new Date().getFullYear() }: FooterProps) {
   return (
     <footer className="border-t border-slate-200 bg-slate-50">
       <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-2 px-6 py-6 text-sm text-slate-500 sm:flex-row">

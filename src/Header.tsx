@@ -25,7 +25,7 @@ const DEFAULT_ITEMS: readonly NavItem[] = [
  * Global site header. Presentational and dependency-free so any source repo can render
  * it inside its own layout.
  */
-export function Header({ brand = 'Aws Rex', items = DEFAULT_ITEMS, actions }: HeaderProps) {
+export function Header({ brand = 'Rextasy One', items = DEFAULT_ITEMS, actions }: HeaderProps) {
   return (
     <header className="border-b border-slate-200 bg-white">
       <nav

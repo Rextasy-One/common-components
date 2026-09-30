@@ -6,7 +6,7 @@ describe('<Footer />', () => {
     render(<Footer />);
 
     expect(screen.getByRole('contentinfo')).toHaveTextContent(
-      `© ${new Date().getFullYear()} Aws Rex`,
+      `© ${new Date().getFullYear()} Rextasy One`,
     );
   });
 

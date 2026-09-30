@@ -7,7 +7,7 @@ describe('<Header />', () => {
 
     expect(screen.getByRole('banner')).toBeInTheDocument();
     expect(screen.getByRole('navigation', { name: 'Primary' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Aws Rex' })).toHaveAttribute('href', '/');
+    expect(screen.getByRole('link', { name: 'Rextasy One' })).toHaveAttribute('href', '/');
     expect(screen.getByRole('link', { name: 'Dashboard' })).toHaveAttribute('href', '/dashboard');
   });
 
