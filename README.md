@@ -11,7 +11,7 @@ Shared header, footer, and navigation primitives for Aws Rex frontends.
 Inside the workspace it is a normal dependency:
 
 ```jsonc
-// src/<pod>/package.json
+// src/<repo>/package.json
 {
   "dependencies": {
     "@aws-rex/common-components": "workspace:*",

@@ -22,7 +22,7 @@ const DEFAULT_ITEMS: readonly NavItem[] = [
 ];
 
 /**
- * Global site header. Presentational and dependency-free so any pod can render
+ * Global site header. Presentational and dependency-free so any source repo can render
  * it inside its own layout.
  */
 export function Header({ brand = 'Aws Rex', items = DEFAULT_ITEMS, actions }: HeaderProps) {
