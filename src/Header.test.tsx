@@ -35,4 +35,40 @@ describe('<Header />', () => {
     expect(link).toHaveAttribute('target', '_blank');
     expect(link).toHaveAttribute('rel', 'noreferrer noopener');
   });
+
+  it('marks the active route with aria-current', () => {
+    render(<Header activeHref="/resume" />);
+
+    expect(screen.getByRole('link', { name: 'Resume' })).toHaveAttribute('aria-current', 'page');
+    expect(screen.getByRole('link', { name: 'Dashboard' })).not.toHaveAttribute('aria-current');
+    expect(screen.getByRole('link', { name: 'Home' })).not.toHaveAttribute('aria-current');
+  });
+
+  it('marks an ancestor route as active for nested paths', () => {
+    render(<Header activeHref="/dashboard/settings" />);
+
+    expect(screen.getByRole('link', { name: 'Dashboard' })).toHaveAttribute('aria-current', 'page');
+  });
+
+  it('never marks "/" active for a nested path', () => {
+    render(<Header activeHref="/dashboard" />);
+
+    expect(screen.getByRole('link', { name: 'Home' })).not.toHaveAttribute('aria-current');
+  });
+
+  it('never marks external items active', () => {
+    render(
+      <Header activeHref="/docs" items={[{ label: 'Docs', href: '/docs', external: true }]} />,
+    );
+
+    expect(screen.getByRole('link', { name: 'Docs' })).not.toHaveAttribute('aria-current');
+  });
+
+  it('marks nothing active when no pathname is supplied', () => {
+    render(<Header />);
+
+    for (const label of ['Home', 'Dashboard', 'Resume']) {
+      expect(screen.getByRole('link', { name: label })).not.toHaveAttribute('aria-current');
+    }
+  });
 });
