@@ -26,7 +26,6 @@ export interface HeaderProps {
 }
 
 const DEFAULT_ITEMS: readonly NavItem[] = [
-  { label: 'Home', href: ROUTES.home },
   { label: 'Dashboard', href: ROUTES.dashboard },
   { label: 'Resume', href: ROUTES.resume },
 ];
@@ -54,7 +53,7 @@ export function Header({ brand = BRAND, items = DEFAULT_ITEMS, activeHref, actio
         aria-label="Primary"
         className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-6 py-4"
       >
-        <a href={ROUTES.home} className="text-lg font-semibold tracking-tight text-slate-900">
+        <a href="/" className="text-lg font-semibold tracking-tight text-slate-900">
           {brand}
         </a>
         <ul className="flex items-center gap-6 text-sm">
@@ -82,7 +81,15 @@ export function Header({ brand = BRAND, items = DEFAULT_ITEMS, activeHref, actio
             );
           })}
         </ul>
-        {actions ? <div className="flex items-center gap-2">{actions}</div> : null}
+        <div className="flex items-center gap-4 text-sm">
+          {actions}
+          <a
+            href={ROUTES.login}
+            className="rounded-lg bg-slate-900 px-4 py-1.5 font-medium text-white transition-colors hover:bg-slate-700"
+          >
+            Log in
+          </a>
+        </div>
       </nav>
     </header>
   );
